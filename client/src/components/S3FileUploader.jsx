@@ -13,17 +13,21 @@ export function S3FileUploader() {
 
   const uploadPicture = () => {
 
-    console.log('upload pic')
-    // const formData = new FormData();
-    // formData.append("file", file[0]);
-    // fetch("http://localhost:8000/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+    if (!file) {
+      alert("No se ha seleccionado un archivo");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("picture", file[0]);
+    fetch("http://localhost:8080/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   }
   return (
     <div className="App">
